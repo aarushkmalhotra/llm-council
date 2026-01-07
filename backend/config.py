@@ -8,16 +8,17 @@ load_dotenv()
 # OpenRouter API key
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 
-# Council members - list of OpenRouter model identifiers
+# Council members - list of OpenRouter model identifiers (free, high-context)
 COUNCIL_MODELS = [
-    "openai/gpt-5.1",
-    "google/gemini-3-pro-preview",
-    "anthropic/claude-sonnet-4.5",
-    "x-ai/grok-4",
+    "google/gemini-2.5-flash-lite",       # keep as requested
+    "xiaomi/mimo-v2-flash:free",          # 262K context (free)
+    "mistralai/devstral-2512:free",       # 262K context (free)
+    "tngtech/deepseek-r1t2-chimera:free", # 164K context (free)
+    "nvidia/nemotron-3-nano-30b-a3b:free" # 256K context (free)
 ]
 
 # Chairman model - synthesizes final response
-CHAIRMAN_MODEL = "google/gemini-3-pro-preview"
+CHAIRMAN_MODEL = "google/gemini-2.5-flash-lite"
 
 # OpenRouter API endpoint
 OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions"

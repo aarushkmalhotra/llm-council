@@ -14,15 +14,16 @@ from .council import run_full_council, generate_conversation_title, stage1_colle
 
 app = FastAPI(title="LLM Council API")
 
-# Enable CORS for local development
+# Enable CORS for local development + Google Colab proxy URLs.
+# Colab origins/hosts can vary (colab.dev, googleusercontent.com, internal hosts).
+# This API doesn't use cookies/auth, so we can safely allow all origins without credentials.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:3000"],
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 
 class CreateConversationRequest(BaseModel):
     """Request to create a new conversation."""

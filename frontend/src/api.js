@@ -2,7 +2,14 @@
  * API client for the LLM Council backend.
  */
 
-const API_BASE = 'http://localhost:8001';
+// In dev (including Google Colab), use same-origin requests and rely on Vite's
+// dev-server proxy (see vite.config.js) to forward /api/* to the backend.
+// This avoids CORS issues with Colab's reverse proxies.
+const API_BASE = import.meta.env.DEV
+  ? ''
+  : (import.meta.env.VITE_API_BASE_URL || 'http://localhost:8001')
+      .toString()
+      .replace(/\/+$/, '');
 
 export const api = {
   /**
